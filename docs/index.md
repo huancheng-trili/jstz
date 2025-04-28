@@ -6,7 +6,7 @@ title: 👨‍⚖️ jstz
 import VPButton from "vitepress/dist/client/theme-default/components/VPButton.vue";
 </script>
 
-# 👨‍⚖️ `jstz????!!!!`
+# 👨‍⚖️ `jstz foo bar baz`
 
 `jstz` (pronounced 'justice') is a JavaScript server runtime for Tezos smart optimistic rollups
 with a great developer experience. It is built on [Boa](https://boajs.dev/) and [Rust](https://www.rust-lang.org/).
