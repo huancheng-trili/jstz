@@ -3,7 +3,7 @@ name: Build docker image for subsequent jobs
 on:
   push:
     tags:
-      - "*"
+      - "aaaaa"
 
   # For manually rebuilding the images
   workflow_dispatch:
