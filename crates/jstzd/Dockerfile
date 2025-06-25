@@ -23,9 +23,9 @@ ARG OCTEZ_VERSION
 RUN apt update && apt install -y curl gpg && \
     curl -s "https://packages.nomadic-labs.com/debian/octez.asc" | gpg --dearmor -o /etc/apt/keyrings/octez.gpg && \
     echo "deb [signed-by=/etc/apt/keyrings/octez.gpg] https://packages.nomadic-labs.com/debian bookworm main" | tee /etc/apt/sources.list.d/octez.list && \
-    apt update && echo $'\n\n\n\n' | apt -y install octez-node \
-        octez-client octez-baker \
-        octez-smart-rollup-node && \
+    apt update && echo $'\n\n\n\n' | apt -y install octez-node=22.0 \
+        octez-client=22.0 octez-baker=22.0 \
+        octez-smart-rollup-node=22.0 && \
         cd /usr/bin && rm octez-admin-client octez-dal-node octez-accuser-* octez-signer octez-codec
 
 # Copy the jstzd binary & dependencies
