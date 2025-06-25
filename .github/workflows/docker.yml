@@ -45,43 +45,19 @@ jobs:
           input_tag=${{ inputs.octez-tag }}
           octez_tag=${input_tag:-"octez-v22.0"}
           echo "OCTEZ_TAG=${octez_tag}" >> ${GITHUB_OUTPUT}
-  build-kernel:
-    name: Build (Kernel)
-    runs-on: [x86_64, linux, nix]
-    steps:
-      - uses: actions/checkout@v4
-      - run: nix --version
-      - name: Format
-        run: nix --accept-flake-config fmt -- --fail-on-change
-      - name: Prevent blst
-        run: nix --accept-flake-config develop -j auto --command sh -c '[ -z "$(cargo tree | grep blst)" ]'
-      - name: Build
-        run: nix --accept-flake-config --log-format raw -L build -j auto .#jstz_kernel
-      - name: Upload kernel
-        id: upload-kernel
-        uses: actions/upload-artifact@v4
-        with:
-          name: jstz-kernel
-          path: result/lib/jstz_kernel.wasm
   build-image:
     name: Build image
-    needs: [build-kernel, set-octez-tag]
+    needs: [set-octez-tag]
     strategy:
       matrix:
         include:
-          - image: jstz-rollup
-            dockerfile: ./crates/jstz_rollup/Dockerfile
           - image: jstzd
             dockerfile: ./crates/jstzd/Dockerfile
-          - image: jstz-cli
-            dockerfile: ./crates/jstz_cli/Dockerfile
-          - image: jstz-node
-            dockerfile: ./crates/jstz_node/Dockerfile
-    uses: jstz-dev/jstz/.github/workflows/docker-multiplatform.yml@main
+    uses: huancheng-trili/jstz/.github/workflows/docker-multiplatform.yml@huanchengchang/jstz-708
     with:
       octez-tag: ${{ needs.set-octez-tag.outputs.octez-tag }}
       docker_registry: ghcr.io
-      docker_image_base: jstz-dev/jstz
+      docker_image_base: huancheng-trili
       image: ${{ matrix.image }}
       dockerfile: ${{ matrix.dockerfile }}
       kernel_artifact_name: jstz-kernel

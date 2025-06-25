@@ -48,10 +48,8 @@ runs:
         username: ${{ inputs.docker_registry_username }}
         password: ${{ inputs.docker_registry_password }}
     - name: Download jstz-kernel artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: ${{ inputs.kernel_artefact_name }}
-        path: jstz_kernel
+      shell: bash
+      run: mkdir -p ./jstz_kernel && cd jstz_kernel && wget https://github.com/huancheng-trili/test-cli/releases/download/0.2.0/jstz_kernel.wasm && echo '[["bootstrap0", "edpkuumXzkHj1AhFmjEVLRq4z54iU2atLPUKt4fcu7ihqsEBiUT4wK", "unencrypted:edsk3Admhyr2GZe5bz7LAx5KEjz6U8U56ouvdsgCuFRf2m6Wakhebz"], ["bootstrap1", "edpktnuUFAP1D7QLjEjpVUF2c8AqSyDzyhgLT2gDHUJUjvUcUyWCJp", "unencrypted:edsk45fxoBDBjky789D5JteWmXYNLy1PJ4LxHKZxxm3ka8ycmm7PaM"]]' > test.json
     - name: Extract metadata
       id: meta
       uses: docker/metadata-action@v3
@@ -69,6 +67,7 @@ runs:
         build-args: |
           OCTEZ_TAG=${{ inputs.octez-tag }}
           KERNEL_PATH=./jstz_kernel/jstz_kernel.wasm
+          BOOTSTRAP_ACCOUNT_PATH=./jstz_kernel/test.json
         cache-from: type=gha
         cache-to: type=gha,mode=max
         labels: ${{ steps.meta.outputs.labels }}
