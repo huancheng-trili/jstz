@@ -23,7 +23,7 @@ ARG OCTEZ_VERSION
 RUN apt update && apt install -y curl gpg && \
     curl -s "https://packages.nomadic-labs.com/debian/octez.asc" | gpg --dearmor -o /etc/apt/keyrings/octez.gpg && \
     echo "deb [signed-by=/etc/apt/keyrings/octez.gpg] https://packages.nomadic-labs.com/debian bookworm main" | tee /etc/apt/sources.list.d/octez.list && \
-    apt-get update && echo $'\n\n\n\n' | apt -y install octez-node=${OCTEZ_VERSION} \
+    apt update && echo $'\n\n\n\n' | apt -y install octez-node \
         octez-client=${OCTEZ_VERSION} octez-baker=${OCTEZ_VERSION} \
         octez-smart-rollup-node=${OCTEZ_VERSION} && \
         cd /usr/bin && rm octez-admin-client octez-dal-node octez-accuser-* octez-signer octez-codec
