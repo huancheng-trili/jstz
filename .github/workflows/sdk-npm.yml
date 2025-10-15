@@ -50,7 +50,7 @@ jobs:
           # package.json that lead to warnings. `pkg fix` corrects those things.
           cd crates/jstz_sdk/pkg && npm pkg fix
           apt install jq
-          jq '.version = "0.0.2"' package.json > package.json
+          jq '.name = "@huancheng-trili/test_jstz_sdk"' pkg/package.json > package.json
       - name: Test install
         shell: bash
         run: |
