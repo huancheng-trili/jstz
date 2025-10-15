@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   run:
-    uses: huancheng-trili/jstz/.github/workflows/docker-multiplatform.yml@huanchengchang/jstz-932-test
+    uses: huancheng-trili/jstz/.github/workflows/sdk-npm.yml@huanchengchang/jstz-932-test
     with:
       ref: huanchengchang/jstz-932-test
       dry_run: false
