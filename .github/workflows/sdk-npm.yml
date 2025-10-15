@@ -73,6 +73,8 @@ jobs:
     name: Upload to GitHub release
     runs-on: ubuntu-24.04
     needs: [build]
+    permissions:
+      contents: write # Required for github release
     if: ${{ !inputs.dry_run }}
     steps:
       - uses: actions/download-artifact@v5
@@ -93,6 +95,8 @@ jobs:
     name: Publish to NPM
     runs-on: ubuntu-24.04
     needs: [build]
+    permissions:
+      id-token: write # Required for OIDC
     steps:
       - uses: actions/download-artifact@v5
         with:
