@@ -43,7 +43,7 @@ jobs:
         shell: bash
         run: |
           export VERSION=0.13.0
-          curl https://raw.githubusercontent.com/drager/wasm-pack/d881b07f63fc145f5af1eccb85e107cf7ea7e9c1/docs/_installer/init.sh -sSf | bash
+          curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | bash
           installed_version=$(wasm-pack -V)
           echo "Installed: $installed_version"
           if [[ $installed_version != *"$VERSION"* ]]; then
