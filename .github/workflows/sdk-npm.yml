@@ -40,10 +40,9 @@ jobs:
           ref: ${{ inputs.ref }}
       - uses: dtolnay/rust-toolchain@1.88.0
       - name: Install wasm-pack
-        shell: bash
+        shell: sh
         run: |
-          export VERSION=v0.13.0
-          curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | bash
+          curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | VERSION=v0.13.0 bash
           wasm-pack -V
       - name: Build
         shell: sh
