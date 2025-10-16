@@ -40,10 +40,16 @@ jobs:
           ref: ${{ inputs.ref }}
       - uses: dtolnay/rust-toolchain@1.88.0
       - name: Install wasm-pack
-        shell: sh
+        shell: bash
         run: |
-          curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | VERSION=v0.13.0 bash
-          wasm-pack -V
+          export VERSION=0.13.0
+          curl https://raw.githubusercontent.com/drager/wasm-pack/d881b07f63fc145f5af1eccb85e107cf7ea7e9c1/docs/_installer/init.sh -sSf | bash
+          installed_version=$(wasm-pack -V)
+          echo "Installed: $installed_version"
+          if [[ $installed_version != *"$VERSION"* ]]; then
+            echo "installed version mismatch: expecting $VERSION"
+            exit 1
+          fi
       - name: Build
         shell: sh
         run: |
