@@ -42,7 +42,7 @@ jobs:
       - name: Install wasm-pack
         shell: sh
         run: |
-          export VERSION=v0.13.1
+          export VERSION=v0.13.0
           curl https://drager.github.io/wasm-pack/installer/init.sh -sSf | bash
           wasm-pack -V
       - name: Build
