@@ -14,6 +14,6 @@ jobs:
   run:
     uses: huancheng-trili/jstz/.github/workflows/sdk-npm.yml@huanchengchang/jstz-932-test
     with:
-      ref: huanchengchang/jstz-932-test
+      ref: v1.0.1
       dry_run: false
     secrets: inherit
