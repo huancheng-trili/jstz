@@ -4,7 +4,7 @@ on:
   pull_request:
   merge_group:
   push:
-    branches: [huanchengchang/jstz-289]
+    branches: [main]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
