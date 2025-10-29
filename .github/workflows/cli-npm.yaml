@@ -116,6 +116,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: jstz_*
+          tag_name: ${{ github.ref }}
 
   publish-to-npm:
     name: Publish to NPM
